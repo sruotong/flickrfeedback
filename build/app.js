@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express = require("express");
+const cors = require("cors");
+var path = require('path');
+var logger = require('morgan');
+const feeds_route_1 = require("./routes/feeds-route");
+var app = express();
+app.use(cors());
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(feeds_route_1.router);
+module.exports = app;
